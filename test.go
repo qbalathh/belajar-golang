@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 
@@ -20,6 +22,16 @@ func main() {
 	sliceBaru := make([]string, 5, 10)
 	sliceBaru[0], sliceBaru[1], sliceBaru[2] = "satu", "dua", "tiga"
 	fmt.Println(sliceBaru)
+	data_orang := map[string]string{
+		"nama":      "Budi",
+		"alamat":    "Jakarta",
+		"pekerjaan": "Programmer",
+		"status":    "Aktif",
+	}
+	fmt.Println(data_orang["nama"])
+	delete(data_orang, "status")
+	fmt.Println(data_orang)
+	fmt.Println(len(data_orang))
 
 	nilai32 := int32(10000)
 	nilai64 := int64(nilai32)
@@ -28,4 +40,23 @@ func main() {
 
 	fmt.Println("Hello, World!")
 	fmt.Println((1 + 2) * 3)
+
+	if bilangan := 13; bilangan%2 == 0 {
+		fmt.Println("a adalah bilangan genap")
+	} else if bilangan%3 == 0 {
+		fmt.Println("a adalah kelipatan tiga")
+	} else {
+		fmt.Println("a adalah bilangan ganjil")
+	}
+
+	switch bilangan := 12; {
+	case bilangan%3 == 0:
+		fmt.Println("a adalah kelipatan tiga")
+	case bilangan%2 == 0:
+		fmt.Println("a adalah bilangan genap")
+	}
+
+	for i := 0; i < 10; i++ {
+		fmt.Println("Perulangan ke-", i)
+	}
 } // tipe data number ada 2 yaitu integer dan floating point
