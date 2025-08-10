@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // membuat struct sama seperti membuat class pada bahasa pemrograman lain
 type Person struct { //membuat blueprnit
@@ -13,6 +16,14 @@ func (orang Person) sayHi(name string) {
 }
 func sayHello(orang Person, name string) {
 	fmt.Println("hello", name, "my name is", orang.Name)
+}
+
+// error interface
+func pembagian(a, b int) (int, error) {
+	if b == 0 {
+		return 0, errors.New("b tidak boleh nol")
+	}
+	return a / b, nil
 }
 
 // interface
@@ -44,6 +55,11 @@ func newMap(name string) map[string]string {
 	}
 }
 
+// type assertions
+func random() interface{} {
+	return "ini adalah string"
+}
+
 func main() {
 	hello := "hello world"
 	fmt.Println(hello)
@@ -64,4 +80,27 @@ func main() {
 
 	fmt.Println(newMap(""))
 	fmt.Println(newMap("GoLang")) //memanggil fungsi newMap dengan nama
+
+	result, err := pembagian(10, 2) //memabuat 2 variable karena return valuenya 2
+	if err != nil {
+		fmt.Println("Error:", err)
+	} else {
+		fmt.Println("Hasil pembagian:", result)
+	}
+
+	//resultString := random().(string) // melakukan type assertion untuk mengubah interface kosong menjadi string
+	//resultInt := random().(int)       // akan panic jika random() tidak mengembalikan int
+	// harus dipastikan type assertions harus sesuai dengan tipe data return dari fungsi random()
+	// jika tidak sesuai, akan terjadi panic
+	// untuk menghindari panic, bisa menggunakan _, ok := random().(string) untuk
+	// melakukan pengecekan apakah type assertion berhasil atau tidak
+	//fmt.Println(resultString)         // akan mencetak "ini adalah string"
+	switch nilai := random().(type) { // melakukan type switch untuk menentukan tipe data dari hasil
+	case string: // menggunakan switch expresssion agar tidak terjadi panic bila tipe data tidak sesuai
+		fmt.Println("Hasil adalah string:", nilai)
+	case int:
+		fmt.Println("Hasil adalah int:", nilai)
+	default:
+		fmt.Println("Hasil adalah tipe yang tidak dikenal")
+	}
 }
