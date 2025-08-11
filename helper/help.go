@@ -2,7 +2,7 @@ package helper
 
 import "fmt"
 
-func sayHello(name string) string {
+func SayHello(name string) string {
 	fmt.Println("Hello", name)
 	return "Hello " + name
 }
