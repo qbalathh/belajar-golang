@@ -6,7 +6,7 @@ import (
 
 func main() {
 
-	a, b, c, d, e := 20, 20, 20, 20, 20
+	a, b, c, d, e := 20
 	a ^= 2
 	b &= 2
 	c |= 2
